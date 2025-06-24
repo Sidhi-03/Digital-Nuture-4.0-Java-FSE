@@ -16,7 +16,7 @@ BEGIN
     COMMIT;
 END;
 /
---Call the Procedure--
+--Call the Procedure
 BEGIN
     ProcessMonthlyInterest;
 END;
