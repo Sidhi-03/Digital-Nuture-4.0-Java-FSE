@@ -1,0 +1,40 @@
+UPDATE Accounts SET Balance = 10000 WHERE AccountID = 1;
+UPDATE Accounts SET Balance = 8000 WHERE AccountID = 2;
+COMMIT;
+CREATE OR REPLACE PROCEDURE TransferFunds (
+    p_from_account IN NUMBER,
+    p_to_account IN NUMBER,
+    p_amount IN NUMBER
+) AS
+    v_balance NUMBER;
+BEGIN
+    SELECT Balance INTO v_balance FROM Accounts WHERE AccountID = p_from_account;
+
+    IF v_balance < p_amount THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Insufficient balance in source account.');
+    END IF;
+
+    UPDATE Accounts
+    SET Balance = Balance - p_amount,
+        LastModified = SYSDATE
+    WHERE AccountID = p_from_account;
+
+    UPDATE Accounts
+    SET Balance = Balance + p_amount,
+        LastModified = SYSDATE
+    WHERE AccountID = p_to_account;
+
+    DBMS_OUTPUT.PUT_LINE(
+        'Transferred ₹' || p_amount || 
+        ' from Account ' || p_from_account || 
+        ' to Account ' || p_to_account
+    );
+
+    COMMIT;
+END;
+/
+--Call the Procedure
+BEGIN
+    TransferFunds(1, 2, 2000);
+END;
+/
