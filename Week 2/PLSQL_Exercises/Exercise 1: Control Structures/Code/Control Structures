@@ -1,0 +1,61 @@
+-- Enable DBMS Output
+SET SERVEROUTPUT ON;
+
+-- ✅ SCENARIO 1: Apply 1% Interest Discount for Customers Above 60
+DECLARE
+    v_age NUMBER;
+BEGIN
+    FOR rec IN (
+        SELECT l.LoanID, l.CustomerID, l.InterestRate, c.DOB 
+        FROM Loans l 
+        JOIN Customers c ON l.CustomerID = c.CustomerID
+    )
+    LOOP
+        v_age := FLOOR(MONTHS_BETWEEN(SYSDATE, rec.DOB) / 12);
+        IF v_age > 60 THEN
+            UPDATE Loans
+            SET InterestRate = InterestRate - 1
+            WHERE LoanID = rec.LoanID;
+
+            DBMS_OUTPUT.PUT_LINE('Interest rate updated for LoanID ' || rec.LoanID);
+        END IF;
+    END LOOP;
+    COMMIT;
+END;
+/
+
+-- ✅ SCENARIO 2: Set IsVIP = 'Y' for Customers with Balance > 10000
+BEGIN
+    FOR rec IN (
+        SELECT CustomerID, Balance FROM Customers
+    )
+    LOOP
+        IF rec.Balance > 10000 THEN
+            UPDATE Customers
+            SET IsVIP = 'Y'
+            WHERE CustomerID = rec.CustomerID;
+
+            DBMS_OUTPUT.PUT_LINE('Customer ' || rec.CustomerID || ' promoted to VIP.');
+        END IF;
+    END LOOP;
+    COMMIT;
+END;
+/
+
+-- ✅ SCENARIO 3: Send Reminder for Loans Due in Next 30 Days
+BEGIN
+    FOR rec IN (
+        SELECT l.LoanID, c.Name, l.EndDate
+        FROM Loans l
+        JOIN Customers c ON l.CustomerID = c.CustomerID
+        WHERE l.EndDate BETWEEN SYSDATE AND SYSDATE + 30
+    )
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(
+            'Reminder: Loan ID ' || rec.LoanID || 
+            ' for customer ' || rec.Name || 
+            ' is due on ' || TO_CHAR(rec.EndDate, 'DD-MON-YYYY')
+        );
+    END LOOP;
+END;
+/
