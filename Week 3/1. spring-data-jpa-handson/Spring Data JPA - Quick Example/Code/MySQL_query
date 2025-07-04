@@ -1,0 +1,28 @@
+-- 1. Create Database (if not already present)
+CREATE DATABASE IF NOT EXISTS orm_learn;
+USE orm_learn;
+
+-- 2. Create Table: country
+CREATE TABLE IF NOT EXISTS country (
+    code VARCHAR(3) NOT NULL,
+    name VARCHAR(100),
+    PRIMARY KEY (code)
+);
+
+-- 3. Insert Sample Data
+INSERT INTO country (code, name) VALUES 
+('IN', 'India'),
+('US', 'United States'),
+('FR', 'France');
+
+-- 4. Select All Countries
+SELECT code, name FROM country;
+
+-- 5. Select Country by Code
+SELECT code, name FROM country WHERE code = 'IN';
+
+-- 6. Delete a Country (optional)
+DELETE FROM country WHERE code = 'IN';
+
+-- 7. Drop the Table (optional)
+DROP TABLE IF EXISTS country;
