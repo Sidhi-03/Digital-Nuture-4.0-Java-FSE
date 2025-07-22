@@ -1,0 +1,35 @@
+.details-container {
+  text-align: center;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+}
+
+.heading {
+  color: brown;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.value {
+  font-weight: normal;
+}
+
+.blue {
+  color: blue;
+}
+
+.red {
+  color: red;
+}
+
+.maroon {
+  color: maroon;
+}
+
+.green {
+  color: green;
+}
