@@ -1,0 +1,51 @@
+1. What is SPA (Single-Page Application)?
+An SPA is a web application that loads a single HTML page and dynamically updates content without refreshing the page.
+Benefits:
+Fast & responsive UI
+Smooth user experience
+Reduced server load
+Better caching & offline support
+Ideal for modern web apps like dashboards or social media
+
+
+2. What is React?
+React is a JavaScript library developed by Facebook for building dynamic and reusable UI components. It's commonly used for SPAs.
+How React Works:
+Uses Virtual DOM for efficient updates.
+Only updates parts of the UI that change.
+Follows a component-based structure.
+
+
+3. SPA vs MPA (Multi-Page Application)
+| SPA                            | MPA                              |
+| ------------------------------ | -------------------------------- |
+| Loads a single HTML page       | Loads multiple HTML pages        |
+| Faster and smoother UX         | Slower due to full reloads       |
+| Uses AJAX/API calls for data   | Each request loads a new page    |
+| Better suited for dynamic apps | Better for static content or SEO |
+
+
+4. Pros & Cons of SPAs
+Pros:
+Fast, smooth navigation
+Less server bandwidth
+App-like feel
+Cons:
+Harder SEO
+Initial load can be heavy
+Requires JavaScript to work well
+
+
+
+5. What is Virtual DOM?
+A Virtual DOM is a lightweight copy of the actual DOM. React uses it to efficiently update only the parts of the UI that change, improving performance.
+
+
+6. Key Features of React
+Component-based architecture
+JSX syntax (HTML + JS)
+Virtual DOM for fast rendering
+One-way data flow
+Hooks for state & lifecycle in functions
+React Router for page navigation
+Supports both client-side and server-side rendering
