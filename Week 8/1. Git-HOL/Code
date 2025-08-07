@@ -1,0 +1,37 @@
+# 1. Set Notepad++ as the default Git editor (used when writing commit messages)
+git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst -nosession"
+
+# Optional: Verify if Notepad++ is set correctly as the editor
+git config --global --get core.editor
+
+# 2. Navigate to your project folder (replace path if different)
+cd '/c/Users/vyass/OneDrive/Desktop/TPO/cognizant/GitDemo'
+
+# 3. Initialize a new Git repository in the current folder
+git init
+
+# 4. Create a new file called welcome.txt and add some content
+echo "Welcome to the version control" > welcome.txt
+
+# 5. List files to verify the file was created
+ls
+
+# 6. Display file contents to confirm
+cat welcome.txt
+
+# 7. Check the Git status — this shows untracked files
+git status
+
+# 8. Stage the file for commit (adds to Git's staging area)
+git add welcome.txt
+
+# 9. Commit the file (this opens Notepad++ for commit message)
+git commit
+# In the editor that opens, type a commit message like:
+# Initial commit
+# Then save and close the editor.
+
+# 10. Create a remote repository on GitLab first (name it: GitDemo)
+# Then add the GitLab repo URL as a remote called 'origin'
+git remote add origin https://gitlab.com/vyassidhi70-group/GitDemo.git
+
