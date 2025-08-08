@@ -1,0 +1,21 @@
+# Step 1: Switch back to the master branch
+git checkout master
+
+# Step 2: List out all differences between master and GitNewBranch (in CLI)
+git diff master GitNewBranch
+
+# Step 3: (Optional, visual diff) Open P4Merge to see visual difference
+# You must configure P4Merge as your diff tool before this
+git difftool master GitNewBranch
+
+# Step 4: Merge the source branch (GitNewBranch) into master
+git merge GitNewBranch
+
+# Step 5: Observe log after merge using graph view
+git log --oneline --graph --decorate
+
+# Step 6: Delete the merged branch
+git branch -d GitNewBranch
+
+# Step 7: Confirm current branch and status
+git status
