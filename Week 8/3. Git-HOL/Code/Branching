@@ -1,0 +1,21 @@
+# Step 1: Create a new branch named "GitNewBranch"
+git branch GitNewBranch
+
+# Step 2: List all local branches (note: '*' indicates current branch)
+git branch
+
+# To list both local and remote branches
+git branch -a
+
+# Step 3: Switch to the newly created branch
+git checkout GitNewBranch
+
+# Step 4: Add some files to this branch
+echo "Content for branch file" > branchFile.txt
+
+# Step 5: Add and commit the new file
+git add branchFile.txt
+git commit -m "Added branchFile.txt in GitNewBranch branch"
+
+# Step 6: Check the current status of the branch
+git status
