@@ -1,0 +1,23 @@
+# Step 1: Verify if master is in clean state
+git checkout master                      # Switch to master branch
+git status                               # Check for uncommitted changes
+
+# Step 2: List out all the available branches
+git branch -a                            # Show all local and remote branches
+
+# Step 3: Pull the remote git repository to the master
+git pull origin master                   # Pull latest changes from remote master
+
+# Step 4: Push the changes from “Git-T03-HOL_002” to the remote repository
+git checkout Git-T03-HOL_002            # Switch to the target branch
+git status                               # Check for uncommitted changes
+
+# If there are uncommitted changes, stage and commit them
+git add .                                # Stage all modified files
+git commit -m "Final changes for Git-T03-HOL_002"  # Commit the changes
+
+# Push the branch to the remote
+git push origin Git-T03-HOL_002         # Push the changes to the remote repository
+
+# Step 5: Observe if the changes are reflected in the remote repository
+git log --oneline --graph --decorate --all   # View commit history visually
