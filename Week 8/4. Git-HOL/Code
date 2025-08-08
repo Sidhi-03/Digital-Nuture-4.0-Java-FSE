@@ -1,0 +1,67 @@
+# Step 1: Verify if master is in clean state
+git checkout master
+git status  # Should return "working tree clean"
+
+# Step 2: Create a branch “GitWork”. Add a file “hello.xml”.
+git checkout -b GitWork
+echo "<note><to>User</to></note>" > hello.xml
+git status
+
+# Step 3: Update the content of “hello.xml” and observe the status
+echo "<from>GitWorkBranch</from>" >> hello.xml
+git status
+
+# Step 4: Commit the changes to reflect in the branch
+git add hello.xml
+git commit -m "Add hello.xml with content in GitWork branch"
+
+# Step 5: Switch to master.
+git checkout master
+
+# Step 6: Add a file “hello.xml” to the master and add different content.
+echo "<note><to>DifferentContent</to></note>" > hello.xml
+git add hello.xml
+
+# Step 7: Commit the changes to the master
+git commit -m "Add hello.xml with different content in master"
+
+# Step 8: Observe the log visually
+git log --oneline --graph --decorate --all
+
+# Step 9: Check the differences using Git diff tool
+git difftool master GitWork  # Optional: if tool is configured
+# OR use
+git diff master..GitWork
+
+# Step 10: Use P4Merge for better visualization (if installed & configured)
+git mergetool --tool=p4merge
+
+# Step 11: Merge the branch to the master
+git merge GitWork
+
+# Step 12: Observe the conflict (merge conflict should happen)
+# Git will output info about conflict in `hello.xml`
+
+# Step 13: Use 3-way merge tool (e.g., vimdiff or P4Merge) to resolve
+git mergetool  # This will launch 3-way merge tool for resolving conflicts
+
+# Step 14: After resolving the conflict, commit the merged result
+git add hello.xml
+git commit -m "Resolved merge conflict in hello.xml"
+
+# Step 15: Check git status, and add backup file to .gitignore
+git status
+echo "*.orig" >> .gitignore
+
+# Step 16: Commit the .gitignore changes
+git add .gitignore
+git commit -m "Ignore backup merge files (*.orig)"
+
+# Step 17: List out all the available branches
+git branch
+
+# Step 18: Delete the merged branch
+git branch -d GitWork
+
+# Step 19: View the final log with decorated graph
+git log --oneline --graph --decorate
